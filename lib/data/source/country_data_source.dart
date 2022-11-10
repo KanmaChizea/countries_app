@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:countries/data/model/country_model.dart';
 import 'package:http/http.dart' as http;
@@ -9,9 +10,15 @@ class CountryDataSource {
   Future<List<Country>> getCountry() async {
     final response = await http.get(_url);
     if (response.statusCode == 200) {
-      Iterable body = jsonDecode(response.body);
-      return List.from(body.map((e) => Country.fromJson(e)));
+      List<Country> list = [];
+      final body = json.decode(response.body) as Iterable;
+      log(body.length.toString());
+      for (Map i in body) {
+        list.add(Country.fromMap(i));
+      }
+      return list;
     } else {
+      log(response.statusCode.toString());
       throw Exception('Could not get data');
     }
   }

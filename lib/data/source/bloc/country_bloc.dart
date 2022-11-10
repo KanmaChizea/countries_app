@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:countries/data/model/country_model.dart';
 import 'package:countries/data/repository/country_repository.dart';
@@ -19,23 +20,26 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
   }
 
   final CountryRepository _repo;
-  List<Country> _countryList = [];
+
+  @visibleForTesting
+  List<Country> countryList = [];
 
   FutureOr<void> _onGetCountries(
       GetCountries event, Emitter<CountryState> emit) async {
     emit(CountryLoading());
     try {
       final countries = await _repo.getCountry();
-      _countryList = countries;
+      countries.sort((a, b) => a.name.compareTo(b.name));
+      countryList = countries;
       emit(CountryLoaded(countries));
     } catch (e) {
-      emit(CountryFailed(e.toString()));
+      rethrow;
     }
   }
 
   FutureOr<void> _onFilterCountries(
       FilterCountries event, Emitter<CountryState> emit) {
-    final List<Country> list = List.from(_countryList);
+    final List<Country> list = List.from(countryList);
     final List<Country> newList = list.where((element) {
       return event.continents.contains(element.continent) ||
           event.currency.any(element.currency.contains) ||
@@ -48,7 +52,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
   FutureOr<void> _onSearchCountry(
       SearchCountry event, Emitter<CountryState> emit) {
     final List<Country> countries = [];
-    for (var i in _countryList) {
+    for (var i in countryList) {
       if (i.name.contains(event.value)) {
         countries.add(i);
       }
@@ -58,6 +62,6 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
 
   FutureOr<void> _onResetCountries(
       ResetCountries event, Emitter<CountryState> emit) {
-    emit(CountryLoaded(_countryList));
+    emit(CountryLoaded(countryList));
   }
 }

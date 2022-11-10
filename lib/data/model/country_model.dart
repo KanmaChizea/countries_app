@@ -7,28 +7,25 @@ class Country extends Equatable {
   final String capital;
   final String region;
   final String population;
-  final String motto;
-  final List<String> language;
+  final String language;
   final String continent;
-  final String religion;
+  final String subRegion;
   final bool independence;
   final String area;
-  final List<String> currency;
-  final List<String> timeZone;
+  final String currency;
+  final String timeZone;
   final String startOfWeek;
   final String flagURL;
   final String drivingSide;
-  final String flag;
   final String coatOfArms;
   const Country({
     required this.name,
     required this.capital,
     required this.region,
     required this.population,
-    required this.motto,
     required this.language,
     required this.continent,
-    required this.religion,
+    required this.subRegion,
     required this.independence,
     required this.area,
     required this.currency,
@@ -36,30 +33,35 @@ class Country extends Equatable {
     required this.startOfWeek,
     required this.flagURL,
     required this.drivingSide,
-    required this.flag,
     required this.coatOfArms,
   });
 
-  factory Country.fromMap(Map<String, dynamic> map) {
-    final languages = map['languages'] as Map<String, String>;
+  factory Country.fromMap(Map map) {
+    final languages =
+        map['languages'] as Map<String, dynamic>? ?? {'': 'Unavailable'};
+    final capitals = map['capital'] as List? ?? ['Unavailable'];
+    final continents = map['continents'] as List? ?? ['Unavailable'];
+    final time = map['timezones'] as List? ?? ['Unavailable'];
+    final currencies = map['currencies'] as Map<String, dynamic>? ??
+        {
+          '': {'name': 'Unavailable'}
+        };
     return Country(
-      name: map['name']['common'] ?? '',
-      capital: map['capital'] ?? '',
-      region: map['region'] ?? '',
-      population: map['population'] ?? '',
-      motto: map['motto'] ?? '',
-      language: languages.values.toList(),
-      continent: map['continents'],
-      religion: map['religion'] ?? '',
-      independence: map['independence'] ?? '',
-      area: map['area'] ?? '',
-      currency: map['currencies']['name'] ?? '',
-      flag: map['flag'],
-      timeZone: map['timezones'] ?? '',
-      startOfWeek: map['startofweek'] ?? '',
-      drivingSide: map['car']['side'] ?? '',
+      name: map['name']['common'] ?? 'Unavailable',
+      capital: capitals.first,
+      region: map['region'] ?? 'Unavailable',
+      population: map['population'].toString(),
+      language: languages.values.first,
+      continent: continents.first,
+      subRegion: map['subregion'] ?? 'Unavailable',
+      independence: map['independent'] ?? false,
+      area: map['area'].toString(),
+      currency: currencies.values.first['name'] ?? 'Unavailable',
+      timeZone: time.first,
+      startOfWeek: map['startOfWeek'] ?? 'Unavailable',
+      drivingSide: map['car']['side'] ?? 'Unavailable',
       flagURL: map['flags']['png'] ?? '',
-      coatOfArms: map['coatofarms']['png'] ?? '',
+      coatOfArms: map['coatOfArms']['png'] ?? '',
     );
   }
 
