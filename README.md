@@ -7,6 +7,7 @@
 ## Challenges
 
 ## Future features
+- Data persistence:
 
 ## Links
 - Apk:
