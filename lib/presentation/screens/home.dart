@@ -1,11 +1,10 @@
 import 'package:countries/core/colors.dart';
-import 'package:countries/core/themes.dart';
-import 'package:countries/data/source/country_data_source.dart';
+import 'package:countries/core/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../data/source/bloc/country_bloc.dart';
+import '../bloc/country_bloc.dart';
 import '../widgets/mainscreen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,8 +18,8 @@ class HomeScreen extends StatelessWidget {
             text: TextSpan(
                 text: 'Explore',
                 style: GoogleFonts.elsieSwashCaps(
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: Theme.of(context).textTheme.bodyText1?.color,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold),
                 children: const [
               TextSpan(
@@ -29,8 +28,28 @@ class HomeScreen extends StatelessWidget {
                       color: orange, fontSize: 24, fontWeight: FontWeight.bold))
             ])),
         actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.light_mode_outlined))
+          BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, state) {
+              return IconButton(
+                  onPressed: () => context.read<ThemeCubit>().toggle(),
+                  icon: (state == ThemeMode.dark)
+                      ? const Icon(Icons.dark_mode_outlined)
+                      : (state == ThemeMode.light)
+                          ? const Icon(Icons.light_mode_outlined)
+                          : const Icon(Icons.auto_mode_outlined));
+              // if (state == ThemeMode.dark) {
+              //   return IconButton(onPressed: () {}, icon: const Text('AUTO'));
+              // } else if (state == ThemeMode.light) {
+              //   return IconButton(
+              //       onPressed: () {},
+              //       icon: const Icon(Icons.dark_mode_outlined));
+              // } else {
+              //   return IconButton(
+              //       onPressed: () {},
+              //       icon: const Icon(Icons.light_mode_outlined));
+              // }
+            },
+          )
         ],
       ),
       body: Padding(

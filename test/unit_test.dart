@@ -1,6 +1,6 @@
 import 'package:countries/data/model/country_model.dart';
 import 'package:countries/data/repository/country_repository.dart';
-import 'package:countries/data/source/bloc/country_bloc.dart';
+import 'package:countries/presentation/bloc/country_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

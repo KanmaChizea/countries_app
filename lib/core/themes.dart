@@ -3,17 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData light = ThemeData(
+    brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: AppBarTheme(
+    primaryColor: lightGrey,
+    appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
-        titleTextStyle: GoogleFonts.elsieSwashCaps(color: Colors.black),
         elevation: 0),
-    textTheme: GoogleFonts.firaSansTextTheme());
+    textTheme: GoogleFonts.firaSansTextTheme(const TextTheme(
+      bodyText1: TextStyle(
+          fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
+      bodyText2: TextStyle(
+          fontSize: 16, color: Colors.black, fontWeight: FontWeight.w300),
+    )));
 ThemeData dark = ThemeData(
+    brightness: Brightness.dark,
     scaffoldBackgroundColor: blue,
+    primaryColor: lightBlue,
     appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
         elevation: 0),
-    textTheme: GoogleFonts.firaSansTextTheme());
+    textTheme: GoogleFonts.firaSansTextTheme(const TextTheme(
+      bodyText1:
+          TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w500),
+      bodyText2:
+          TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w300),
+    )));

@@ -19,6 +19,7 @@ class ButtonWithIcon extends StatelessWidget {
           isScrollControlled: true,
           context: context,
           builder: (context) => onPressed,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(28),
@@ -28,7 +29,7 @@ class ButtonWithIcon extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: lightGrey,
+              color: Theme.of(context).primaryColor,
             )),
         child: Row(
           children: [Icon(icon), const SizedBox(width: 4), Text(label)],

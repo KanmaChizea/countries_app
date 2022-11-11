@@ -6,7 +6,7 @@ import 'package:countries/presentation/widgets/languages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/source/bloc/country_bloc.dart';
+import '../bloc/country_bloc.dart';
 import 'search_bar.dart';
 
 class MainScreen extends StatelessWidget {
@@ -31,6 +31,7 @@ class MainScreen extends StatelessWidget {
                 onPressed: FilterSheet()),
           ],
         ),
+        const SizedBox(height: 16),
         Expanded(child: BlocBuilder<CountryBloc, CountryState>(
           builder: (context, state) {
             if (state is CountryLoaded) {

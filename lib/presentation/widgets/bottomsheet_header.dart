@@ -20,7 +20,7 @@ class BottomSheetHeader extends StatelessWidget {
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: const Color(0xFFCCCBCB)),
+                color: Theme.of(context).primaryColor),
             child: const Icon(
               Icons.close,
               color: Color(0xFF888888),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 import 'package:equatable/equatable.dart';
 
@@ -37,6 +38,7 @@ class Country extends Equatable {
   });
 
   factory Country.fromMap(Map map) {
+    final formatter = NumberFormat('#,##,000');
     final languages =
         map['languages'] as Map<String, dynamic>? ?? {'': 'Unavailable'};
     final capitals = map['capital'] as List? ?? ['Unavailable'];
@@ -46,20 +48,23 @@ class Country extends Equatable {
         {
           '': {'name': 'Unavailable'}
         };
+    final week = map['startOfWeek'] as String? ?? 'Unavailabe';
+    final side = map['car']['side'] as String? ?? 'Unavailable';
     return Country(
       name: map['name']['common'] ?? 'Unavailable',
       capital: capitals.first,
       region: map['region'] ?? 'Unavailable',
-      population: map['population'].toString(),
+      population: formatter.format(map['population']).toString(),
       language: languages.values.first,
       continent: continents.first,
       subRegion: map['subregion'] ?? 'Unavailable',
       independence: map['independent'] ?? false,
-      area: map['area'].toString(),
+      area: formatter.format(map['area']).toString(),
       currency: currencies.values.first['name'] ?? 'Unavailable',
       timeZone: time.first,
-      startOfWeek: map['startOfWeek'] ?? 'Unavailable',
-      drivingSide: map['car']['side'] ?? 'Unavailable',
+      startOfWeek: week.replaceRange(0, 1, week[0].toUpperCase()),
+      drivingSide: side.replaceRange(
+              0, 1, side[0].toUpperCase()),
       flagURL: map['flags']['png'] ?? '',
       coatOfArms: map['coatOfArms']['png'] ?? '',
     );
