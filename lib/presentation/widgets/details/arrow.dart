@@ -1,4 +1,4 @@
-import '../../../core/colors.dart';
+import '../../style/colors.dart';
 import '../../bloc/flag_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

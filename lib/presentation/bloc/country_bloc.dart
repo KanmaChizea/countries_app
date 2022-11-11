@@ -56,7 +56,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       SearchCountry event, Emitter<CountryState> emit) {
     final List<Country> countries = [];
     for (var i in countryList) {
-      if (i.name.contains(event.value)) {
+      if (i.name.toLowerCase().contains(event.value.toLowerCase())) {
         countries.add(i);
       }
     }

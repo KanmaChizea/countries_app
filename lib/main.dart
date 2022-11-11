@@ -1,5 +1,5 @@
-import 'core/theme_cubit.dart';
-import 'core/themes.dart';
+import 'presentation/style/theme_cubit.dart';
+import 'presentation/style/themes.dart';
 import 'data/repository/country_repository.dart';
 import 'data/source/country_data_source.dart';
 import 'presentation/bloc/filter_values_cubit.dart';
@@ -27,12 +27,20 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => FilterValues()),
       ],
       child: Builder(builder: (context) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: light,
-          darkTheme: dark,
-          themeMode: context.watch<ThemeCubit>().state,
-          home: const HomeScreen(),
+        return GestureDetector(
+          onTap: () {
+            final focus = Focus.of(context);
+            if (focus.hasPrimaryFocus) {
+              focus.unfocus();
+            }
+          },
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: light,
+            darkTheme: dark,
+            themeMode: context.watch<ThemeCubit>().state,
+            home: const HomeScreen(),
+          ),
         );
       }),
     );

@@ -15,8 +15,8 @@ void main() {
     sut = CountryBloc(mockCountryRepository);
   });
 
-  const List<Country> countryList = [
-    Country(
+  List<Country> countryList = [
+    const Country(
         name: 'testname',
         capital: 'testcapital',
         region: 'testregion',
@@ -32,22 +32,6 @@ void main() {
         flagURL: 'testflagURL',
         drivingSide: 'testdrivingSide',
         coatOfArms: 'testcoatOfArms'),
-    Country(
-        name: 'testname1',
-        capital: 'testcapital1',
-        region: 'testregion1',
-        population: 'testpopulation1',
-        language: 'testlanguage1',
-        continent: 'testcontinent1',
-        subRegion: 'testsubregion1',
-        independence: true,
-        area: 'testarea1',
-        currency: 'testcurrency1',
-        timeZone: 'testtimeZone1',
-        startOfWeek: 'teststartOfWeek1',
-        flagURL: 'testflagURL1',
-        drivingSide: 'testdrivingSide1',
-        coatOfArms: 'testcoatOfArms1')
   ];
 
   group('Get countries event', () {
@@ -68,19 +52,22 @@ void main() {
       verify(() => mockCountryRepository.getCountry()).called(1);
     });
 
-    test("emits loading and loaded state when repo returns value", () async {
-      arrangeGetCountriesRepoReturn();
-      expectLater(sut.stream,
-          emitsInOrder([CountryLoading(), const CountryLoaded(countryList)]));
-      sut.add(GetCountries());
-    });
-
     test(
       "emits loading and failed state when repo throws exception",
       () async {
         arrangeGetCountriesRepoThrow();
         expectLater(sut.stream,
             emitsInOrder([CountryLoading(), const CountryFailed('error')]));
+        sut.add(GetCountries());
+      },
+    );
+    test(
+      "emits loading and failed state when repo returns value",
+      () async {
+        arrangeGetCountriesRepoReturn();
+        countryList.sort((a, b) => a.name.compareTo(b.name));
+        expectLater(sut.stream,
+            emitsInOrder([CountryLoading(), CountryLoaded(countryList)]));
         sut.add(GetCountries());
       },
     );

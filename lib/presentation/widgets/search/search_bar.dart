@@ -2,7 +2,7 @@ import '../../bloc/country_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/colors.dart';
+import '../../style/colors.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import '../../../core/colors.dart';
+import '../../style/colors.dart';
 import '../../bloc/country_bloc.dart';
 import '../../bloc/filter_values_cubit.dart';
 import 'filter_item.dart';
