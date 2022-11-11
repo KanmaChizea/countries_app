@@ -1,13 +1,13 @@
-import 'package:countries/data/model/country_model.dart';
-import 'package:countries/presentation/screens/details.dart';
-import 'package:countries/presentation/widgets/filter.dart';
-import 'package:countries/presentation/widgets/iconbutton.dart';
-import 'package:countries/presentation/widgets/languages.dart';
+import '../../../data/model/country_model.dart';
+import '../../screens/details.dart';
+import '../filter/filter.dart';
+import 'iconbutton.dart';
+import '../language/languages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/country_bloc.dart';
-import 'search_bar.dart';
+import '../../bloc/country_bloc.dart';
+import '../search/search_bar.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});

@@ -1,7 +1,8 @@
-import 'package:countries/core/theme_cubit.dart';
-import 'package:countries/core/themes.dart';
-import 'package:countries/data/repository/country_repository.dart';
-import 'package:countries/data/source/country_data_source.dart';
+import 'core/theme_cubit.dart';
+import 'core/themes.dart';
+import 'data/repository/country_repository.dart';
+import 'data/source/country_data_source.dart';
+import 'presentation/bloc/filter_values_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (_) => CountryBloc(CountryRepository(CountryDataSource()))
               ..add(GetCountries())),
-        BlocProvider(create: (_) => ThemeCubit())
+        BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => FilterValues()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(

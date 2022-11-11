@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'bottomsheet_header.dart';
+import '../shared/bottomsheet_header.dart';
 
 final languageList = [
   'Bahosa',

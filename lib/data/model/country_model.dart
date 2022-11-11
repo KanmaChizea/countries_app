@@ -63,8 +63,7 @@ class Country extends Equatable {
       currency: currencies.values.first['name'] ?? 'Unavailable',
       timeZone: time.first,
       startOfWeek: week.replaceRange(0, 1, week[0].toUpperCase()),
-      drivingSide: side.replaceRange(
-              0, 1, side[0].toUpperCase()),
+      drivingSide: side.replaceRange(0, 1, side[0].toUpperCase()),
       flagURL: map['flags']['png'] ?? '',
       coatOfArms: map['coatOfArms']['png'] ?? '',
     );
@@ -74,5 +73,5 @@ class Country extends Equatable {
       Country.fromMap(json.decode(source));
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [name];
 }

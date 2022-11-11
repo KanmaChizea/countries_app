@@ -12,14 +12,10 @@ class GetCountries extends CountryEvent {}
 class FilterCountries extends CountryEvent {
   final List<String> continents;
   final List<String> timeZones;
-  final List<String> currency;
-  final List<String> language;
 
   const FilterCountries(
     this.continents,
     this.timeZones,
-    this.currency,
-    this.language,
   );
 }
 

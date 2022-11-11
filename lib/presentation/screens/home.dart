@@ -1,11 +1,11 @@
-import 'package:countries/core/colors.dart';
-import 'package:countries/core/theme_cubit.dart';
+import '../../core/colors.dart';
+import '../../core/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../bloc/country_bloc.dart';
-import '../widgets/mainscreen.dart';
+import '../widgets/shared/mainscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -37,17 +37,6 @@ class HomeScreen extends StatelessWidget {
                       : (state == ThemeMode.light)
                           ? const Icon(Icons.light_mode_outlined)
                           : const Icon(Icons.auto_mode_outlined));
-              // if (state == ThemeMode.dark) {
-              //   return IconButton(onPressed: () {}, icon: const Text('AUTO'));
-              // } else if (state == ThemeMode.light) {
-              //   return IconButton(
-              //       onPressed: () {},
-              //       icon: const Icon(Icons.dark_mode_outlined));
-              // } else {
-              //   return IconButton(
-              //       onPressed: () {},
-              //       icon: const Icon(Icons.light_mode_outlined));
-              // }
             },
           )
         ],

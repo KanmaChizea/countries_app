@@ -1,11 +1,11 @@
-import 'package:countries/presentation/bloc/flag_cubit.dart';
+import '../bloc/flag_cubit.dart';
 import 'package:flutter/material.dart';
 
-import 'package:countries/data/model/country_model.dart';
+import '../../data/model/country_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/details_info.dart';
-import '../widgets/image_navigator.dart';
+import '../widgets/details/details_info.dart';
+import '../widgets/details/image_navigator.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({

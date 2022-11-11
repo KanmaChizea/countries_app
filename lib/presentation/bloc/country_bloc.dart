@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:countries/data/model/country_model.dart';
-import 'package:countries/data/repository/country_repository.dart';
-import 'package:equatable/equatable.dart';
+
+import '../../data/model/country_model.dart';
+import '../../data/repository/country_repository.dart';
 
 part 'country_event.dart';
 part 'country_state.dart';
@@ -33,19 +35,20 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       countryList = countries;
       emit(CountryLoaded(countries));
     } catch (e) {
-      rethrow;
+      emit(CountryFailed(e.toString()));
     }
   }
 
   FutureOr<void> _onFilterCountries(
       FilterCountries event, Emitter<CountryState> emit) {
     final List<Country> list = List.from(countryList);
+    log(event.continents.toString());
+    log(event.timeZones.toString());
     final List<Country> newList = list.where((element) {
       return event.continents.contains(element.continent) ||
-          event.currency.any(element.currency.contains) ||
-          event.language.any(element.language.contains) ||
           event.timeZones.any(element.timeZone.contains);
     }).toList();
+    log(newList.toString());
     emit(CountryLoaded(newList));
   }
 

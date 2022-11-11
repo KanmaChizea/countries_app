@@ -1,5 +1,5 @@
-import 'package:countries/core/colors.dart';
-import 'package:countries/presentation/bloc/flag_cubit.dart';
+import '../../../core/colors.dart';
+import '../../bloc/flag_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

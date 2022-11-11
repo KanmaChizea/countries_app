@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:countries/data/model/country_model.dart';
+import '../model/country_model.dart';
 import 'package:http/http.dart' as http;
 
 class CountryDataSource {
